@@ -19,6 +19,12 @@ namespace Talabat.Repository.Data
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
+
+        internal object where(Func<object, object> value)
+        {
+            throw new NotImplementedException();
+        }
+
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }   
         public DbSet<ProductBrand> ProductBrands { get; set; }
