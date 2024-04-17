@@ -32,7 +32,7 @@ namespace Talabat.APIs.Controllers
         {
 
             var spec = new ProductWithBrandAndCategorySpecifications(id);
-            var product =await _productRepo.GetByWithAsyncIdAsync(spec);
+            var product =await _productRepo.GetWithSpecAsync(spec);
 
             if (product == null) 
                 return NotFound();//404
