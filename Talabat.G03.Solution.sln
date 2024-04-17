@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Talabat.APIs", "Talabat.APIs\Talabat.APIs.csproj", "{8F9E0B6B-F944-47FB-A28A-85EF8E5B07FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Talabat.APIs", "Talabat.APIs\Talabat.APIs.csproj", "{8F9E0B6B-F944-47FB-A28A-85EF8E5B07FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Talabat.Core", "Talabat.Core\Talabat.Core.csproj", "{55FCABE9-B9DC-49DE-BDDC-F3CBDB7BA336}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Talabat.Core", "Talabat.Core\Talabat.Core.csproj", "{55FCABE9-B9DC-49DE-BDDC-F3CBDB7BA336}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Talabat.Repository", "Talabat.Repository\Talabat.Repository.csproj", "{FCE314EE-10F9-4815-927C-1835D4FF4AFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Talabat.Repository", "Talabat.Repository\Talabat.Repository.csproj", "{FCE314EE-10F9-4815-927C-1835D4FF4AFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Talabat.Application", "Talabat.Application\Talabat.Application.csproj", "{E28E3962-8DB5-4625-8BE1-80AE7DDFA958}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{FCE314EE-10F9-4815-927C-1835D4FF4AFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCE314EE-10F9-4815-927C-1835D4FF4AFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCE314EE-10F9-4815-927C-1835D4FF4AFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E28E3962-8DB5-4625-8BE1-80AE7DDFA958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E28E3962-8DB5-4625-8BE1-80AE7DDFA958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E28E3962-8DB5-4625-8BE1-80AE7DDFA958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E28E3962-8DB5-4625-8BE1-80AE7DDFA958}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
