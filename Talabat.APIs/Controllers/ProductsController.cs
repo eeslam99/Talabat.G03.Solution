@@ -4,31 +4,35 @@ using Talabat.Core.Repositories;
 using Talabat.Core.Entities;
 using Talabat.Core.Specifications;
 using Talabat.Core.ProductSpecifications;
+using AutoMapper;
+using Talabat.APIs.Dtos;
 
 namespace Talabat.APIs.Controllers
 {
     public class ProductsController : APIBaseController
     {
         private readonly IGenericRepository<Product> _productRepo;
+        private readonly IMapper _mapper;
 
-        public ProductsController(IGenericRepository<Product> ProductRepo)
+        public ProductsController(IGenericRepository<Product> ProductRepo, IMapper mapper )
         {
             _productRepo = ProductRepo;
+            _mapper = mapper;
         }
 
         //Get All Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts() 
+        public async Task<ActionResult<IEnumerable<ProductToReturnDto>>> GetProducts() 
         {
             var spec = new ProductWithBrandAndCategorySpecifications();
             var Products = await _productRepo.GetAllWithSpecAsync(spec);
-            return Ok(Products);
+            return Ok(_mapper.Map<IEnumerable<Product>,IEnumerable<ProductToReturnDto>>(Products));
         }
 
         //Get Product By Id
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
 
             var spec = new ProductWithBrandAndCategorySpecifications(id);
@@ -36,8 +40,7 @@ namespace Talabat.APIs.Controllers
 
             if (product == null) 
                 return NotFound();//404
-            return Ok(product);//200
+            return Ok(_mapper.Map<Product, ProductToReturnDto>(product));//200
         }
-
     }
 }

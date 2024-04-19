@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Talabat.APIs.Helper;
 using Talabat.Core.Entities;
 using Talabat.Core.Repositories;
 using Talabat.Repository;
@@ -19,6 +20,7 @@ public class Program
         builder.Services.AddSwaggerGen();
         builder.Services.AddDbContext<StoreContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
         builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+        builder.Services.AddAutoMapper(typeof(MappingProfile));
 
         var app = builder.Build();
 
@@ -50,6 +52,7 @@ public class Program
             app.UseSwaggerUI();
         }
 
+        app.UseStaticFiles();
         app.UseHttpsRedirection();
 
         app.UseAuthorization();

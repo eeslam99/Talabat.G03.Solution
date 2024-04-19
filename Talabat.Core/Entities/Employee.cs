@@ -13,6 +13,6 @@ namespace Talabat.Core.Entities
         public Decimal Salary { get; set; }
         public int? Age { get; set; }
 
-        public Department Department { get; set; //nav prop
+        public Department Department { get; set; } //nav prop
     }
 }
