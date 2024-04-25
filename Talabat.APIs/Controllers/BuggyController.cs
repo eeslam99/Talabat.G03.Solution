@@ -1,0 +1,45 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Talabat.Repository.Data;
+
+namespace Talabat.APIs.Controllers
+{
+    public class BuggyController: APIBaseController
+    {
+        private readonly StoreContext _dbContext;
+
+        public BuggyController(StoreContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        [HttpGet("NotFound")]
+        public ActionResult GetNotFound()
+        {
+            var product = _dbContext.Products.Find(100);
+            if(product == null) return NotFound();
+            return Ok(product);
+        }
+
+        [HttpGet("ServerError")]
+        public ActionResult GetServerError(int id)
+        {
+            var Product = _dbContext.Products.Find(100);
+            var productToReturn = Product.ToString(); //Error
+            //will threow Exceprtion [Null Referance Exception]
+            return Ok(productToReturn);
+
+        }
+
+        [HttpGet("BadRequest")]
+        public ActionResult GetBadRequest() {
+
+            return BadRequest();
+        }
+
+        [HttpGet("BadRequest/{id}")]
+        public ActionResult GetBadRequest(int id) {
+            return Ok();
+        }
+
+    }
+}
