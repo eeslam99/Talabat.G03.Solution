@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Talabat.APIs.Errors;
 using Talabat.Repository.Data;
 
 namespace Talabat.APIs.Controllers
@@ -16,7 +17,7 @@ namespace Talabat.APIs.Controllers
         public ActionResult GetNotFound()
         {
             var product = _dbContext.Products.Find(100);
-            if(product == null) return NotFound();
+            if (product == null) return NotFound(new ApiResponse(404));
             return Ok(product);
         }
 
