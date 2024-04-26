@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Talabat.APIs.Errors;
 using Talabat.APIs.Helper;
 using Talabat.Core.Entities;
 using Talabat.Core.Repositories;
@@ -21,6 +24,20 @@ public class Program
         builder.Services.AddDbContext<StoreContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
         builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         builder.Services.AddAutoMapper(typeof(MappingProfile));
+        builder.Services.Configure<ApiBehaviorOptions>(Options =>
+        {
+            Options.InvalidModelStateResponseFactory = (actionContext) =>
+            {
+                var errors = actionContext.ModelState.Where(P => P.Value.Errors.Count() > 0)
+                                                 .SelectMany(P => P.Value.Errors)
+                                                 .Select(E => E.ErrorMessage).ToArray();
+                var validationErrorResponse = new ApiValidationErrorResponse()
+                {
+                    Errors = errors
+                };
+                return new BadRequestObjectResult(validationErrorResponse);
+            };
+        });
 
         var app = builder.Build();
 
