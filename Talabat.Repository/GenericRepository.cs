@@ -19,7 +19,7 @@ namespace Talabat.Repository
         {
             _dbContext = dbContext;
         }
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IReadOnlyList<T>> GetAllAsync()
         {
             //if (typeof(T) == typeof(Product))
             //{
@@ -28,7 +28,7 @@ namespace Talabat.Repository
             return await _dbContext.Set<T>().ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAllWithSpecAsync(ISpecification<T> spec)
+        public async Task<IReadOnlyList<T>> GetAllWithSpecAsync(ISpecification<T> spec)
         {
             return await ApplySpecifications(spec).ToListAsync();
         }
